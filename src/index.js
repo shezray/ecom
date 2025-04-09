@@ -1,18 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client'; // Import from 'react-dom/client' instead of 'react-dom'
-import './index.scss';
-import App from './App';
+import ReactDOM from 'react-dom/client'; // Correct import for React 18
+
 import { BrowserRouter } from 'react-router-dom';
 
-const rootElement = document.getElementById('root');
+import App from './App';
+import { UserProvider } from './contexts/user.context';
+import { ProductsProvider } from './contexts/products.context';
 
-// Create a root element using createRoot
-const root = ReactDOM.createRoot(rootElement); 
+import './index.scss';
+
+const rootElement = document.getElementById('root');
+const root = ReactDOM.createRoot(rootElement); // Create root using new API
 
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <UserProvider>
+        <ProductsProvider>
+          <App />
+        </ProductsProvider>
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
